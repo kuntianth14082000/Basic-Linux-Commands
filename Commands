@@ -1,0 +1,273 @@
+#install VM ubantu on windows,
+*Open powershell in administative mode and run commad
+>wsl --install
+
+#install windows terminal
+>https://apps.microsoft.com/detail/9N0DX20HK701?rtc=1&hl=en-in&gl=IN
+
+-----------------------------------
+Commands :
+
+>whoami
+>man whoami  //to get manual for whoami command
+>clear 	//to clear screen
+	*you can use cntl + l to clear screen
+>pwd	//it tells the current location
+>ls	//list the content of folder
+	>ls docs/team/ 	*this will list out from team folder
+	>ls /home/maria_dev/docs/  *If the files are on different path then start with /home
+>cd 	//change directory
+	cd ../../.. *To move 3 folders back
+	cd ~/Desktop/  *to directly move ti desktop directory
+>mkdir	//makedirectories
+	>mkdir folder_name folder_name2
+	>mkdir folder2/seeds  *create seeds folder inside folder2 directory
+	>mkdir -p folder1/seeds/acn *initially seeds folder is not present in folder1, but still we want to create acn folder then
+>touch  //create file
+	touch apple  //to create a apple file
+	touch apple.pdf apple.txt apple.xls //to touch multiple files at a time
+>rmdir	//to remove folder
+	>rmdir apple
+	>rmdir apple.pdf apple.txt
+>rm	>rm cat.txt //it will delete file and will not show anything
+	>rm -v cat.txt //to show status after removal of file
+	>rm -ri cat.txt  //before removing files it asks for permission
+
+>open 	//to open files
+
+>mv	//rename files or to move file to different directory
+	>mv kunthal.txt kunthal_n.txt
+	>mv kunthal.txt cake.txt cookie.txt stuff/ 	*move these files to stuff directory
+>cp	//to copy files
+	>cp -r stuff stuff_copy //while copying directories we need -r
+
+>head 	>head kunthal.txt -n 10 	//it will print first 10 lines
+>tail	>tail kunthal.txt -n 10		//it will print last 10 lines
+>date	>prints current date time
+	>date > today.txt  //it writes date time in today file
+>pwd 	>pwd > some.txt //it will write current directory in some.txt
+	>pwd >>some.txt	//it will write current directory in next line in some.txt
+>cat 	//concatinate files
+	>cat abc.txt //to print file
+	>cat abc.txt kunthal.txt //it concatinate files 
+	>cat abc.txt kunthal.txt > new.txt //it concatinate both file and write in new.txt
+>less	//it shows content of files
+	>less new.txt	//it don't read all content at a time, it read as you click enter/space
+			//:'/green 'also you can search like this in text
+>echo	>echo "Hello" //it prints the values
+	>echo "userName=Kunthal" > abc.txt  //it creates abc.txt file and write in it.
+	>echo "Passwd=Kunthal" >> abc.txt  //it open/create abc.txt file and write in  in next line.
+
+>wc 	>wc abc.txt //it shows Number_of_lines number_of_words number_of_bytes file_name
+	>wc -l abc.txt //given number of lines
+	>wc -m abc.txt //number of characters
+	>wc -w abc.txt //number of words
+	>cat abc.txt xyz.txt |wc //it gives number of lines and words by concatinating both files
+	>cat abc.txt xyz.txt |wc -l //it gives number of lines by concatinating both files
+	>cat abc.txt xyz.txt |wc -l > num.txt //write output in file
+
+//take output of one cammand and pass to another command
+>ls -l |wc 	//it given number of lines words and bytes in a directory
+
+>sort	>sort abc.txt //sort content of the file and print
+	>sort abc.txt >soted_data.txt
+ 	>sort -n abc.txt //sort numerically
+	>sort -nr abc.txt //sort reversly
+	>sort -nu abc.txt //sort and give unique values only
+	>cat abc.txt efd.txt | sort //it will concate 2 files and sort the data
+	>sort -nu abc.txt |wc -l //to get unique sorted values
+
+>uniq	//it removes duplicate values
+	>uniq abc.txt //it removes only duplicates which are continuously one after another
+	>sort abc.txt | unique //this will print unique values
+	>sort -u abc.txt //this will print unique values
+	>sort abc.txt | uniq -d  //it will gives the unique-duplicate values which have in file
+	>sort abc.txt |uniq -u	//it will give only values which are purely unique in file/means present only once in file
+	>sort abc.txt |uniq -c  //this wil give count of values in file
+	>sort abc.txt |uniq -c |sort -n 	//and sort the values according to there number of appearence
+	
+
+> ~	//Till the
+	>echo ~ //this will give current dir
+	>cd ~	//this will bring us back to home dir
+
+>$USER	>echo $USER //this will give user name
+>$PATH	>echo $PATH //this will print all path
+> *	>echo *	//this will give all directory and files inside curr directory
+>*.txt	>echo *.txt	//start with anything but ends with .txt give all files
+>?	// ? : one character // ?? : two character ...
+	>echo *.??t	//print all files which have any name and extension any 2 chacter by ends with t
+	>echo *.???	//this will give all files which have extension 3 alphabet like (txt,zip)
+	>rm *.??	//it wil remove files
+>{a,b,c} >echo {a,b,c}.txt	//this prints all combination like {a.txt, b.txt, c.txt}
+	>touch {a,b,c}.py	//this will create 'a.py, b.py, c.py' files
+
+>ls	>ls app.* //this will print all files like (app.py, app.txt, app.js)
+>{1..99}>echo {1..99} //this will print numbers from 1 to 99
+	>echo day{1..7} //this will print day1, day2,....day7
+
+>diff	//to find difference between two files
+	>diff a.txt b.txt //this shows difference between two file
+	>diff -y a.txt b.txt //here you can see texts and diff side by side
+ 
+>find	//this helps to find texts/files/folders (only files not text inside files)
+	>find . -name "*.txt"	//'.' means current directory and it shows all .txt files "including nexted files"
+	>find . -name "*7*"	//show all the files in whichs names have 7
+ 	>find stuff -name "*dcx*" //this gives all the files which have dcx in it and from stuff folder.
+	>find . type -d -name  '*E" //type -d means find directory only
+	>find . type -d -iname '*E*" //-iname for find both upper and lower case
+ 	
+>-or 	//or condition
+	>find . -name '*.txt' -or -name '*.pdf' //find txt or pdf files
+>-size  //size of files
+	>find . type -d -size +100k -size -1M	//find the directory which are more that 100KB & less than 1MB
+
+>-exec	//this execute commands
+	>find . -type f -exec cat {} \;
+
+>grep	//it helps to find texts inside the files
+	>grep text_which_u_want_to_search file_name
+	>grep green abc.txt //this will give u the line where green word is present
+	>grep -n green abc.txt //this will give line number as well
+	>grep -nc green abc.txt //this will give number of lines where green is present
+	>grep -nC 2 green abc.txt //this will give context where green is present
+	>grep -r "green" . //it checks for green in entire directory files and returns
+	//it can search for regular expressions as well
+>du	//diss utility	(this shows actual file size)
+	>du . //this will give you size of all the files/folders in current directory
+	>du folder0 //this will give the size of folder0 and the files inside it and there size
+	>du -m	//to get only mb files
+	>du -g //to get only gb files
+	>du -kh	//this will give you files in kb -h means human readable
+	>du -h | sort -h //this will give you files in kb to gb in human readable format
+	>du -h | sort -h |tail  //to get largest last 10 files 
+>df	//this shows size cnsumed by files (this shows size consumed on the disk)
+	>df
+	
+>history //this shows previous commands which we ran, and also number of ran command
+	>!80 //this runs command number 80 which is in history	
+	>history | grep 'green'	//It will show the command in which we had green
+	
+>ps	//this will shows the processes running on system
+	>ps
+	>ps ax //this will show all hidden processes as well
+	>ps axww 
+	> ps ax | grep "chrome" // we can find any perticular application and there running id, and by id we can kill it
+>top	//this shows top most cpu memory using apps
+
+>kill	//to kill the processes
+	>kill -l //this will list out commands of kill
+	>kill <PID> //kill application by using it's PID
+	>ps -a //this will show running processes
+	>kill -9 PID //to kill forcly and immidatly
+	>killall -9 chrome //to kill all chrome processed
+	
+>jobs	//here we can check the running jobs
+	>jobs
+>bg	>bg 1 //saying that run process number 1 in background
+>fg	>fg 1 //saying that run process number 1 in forground
+
+>sleep	//to stop the shell for few time
+	>sleep 5 //it will stop shell for 5 seconds
+
+>gzip	//you can compress a file
+	>gzip -k abc.txt //it will create a copy of file and make it zipped like(abc.txt.gz) (-k : keep oriiginal)
+	>gzip -d abc.txt.gz //to uncompress the file
+	>gunzip abc.txt.gz //to uncompress the file
+	>gzip -kv abc.txt //it will keep original file and create a copy with ziped and also shows amount of compressed
+	>gzip -kv abc.txt new.txt //it will zip multiple files at a time
+>tar	//used to create and archive,grouping multiple files in a single file.
+	>tar -cf archive.tar a.txt b.txt c.txt	//c:create f:file archive.tar :this is the tar file it will create and other files include in it	
+	>tar -xf archive.tar	//to unarchive
+	>tar -xf archive.tar -C directory 	//to move after archive in specific directory
+	>gzip -k archive.tar //it will zip archive file in which have bunch of files
+
+	>tar -czf hello.tar a.txt b.txt c.txt //to archive and zip at the same time
+	>tar -xf hello.tar //to unzip and unarchive same time
+	
+>nano 	>nano abc.txt	//here you can make changes in the file, it provides various things
+
+Alias in unix :
+	>alias b='sleep 10' 
+	>b //this will sleep system for 10 sec
+
+	//you can add your own alias in .bashrc file and you can call it directly while programming
+	>vi .bashrc 	>> add in file like 
+	>alias count='echo {1..99}' //when you call as count from terminal it will print numbers from 1 to 99
+	>source .bashrc //after adding alias in bashrc file execute this command
+
+>xargs //it takes output from one command use as input for next command
+	>ls |sort //here we are passing output of ls to sort for sorting
+	
+	>cat abc.txt | xargs rm //this will take output of cat and remove the files which are in output of first command from current directory
+	
+>ln	//it is used to create links
+	>ln abc.txt hardlink.txt  
+	>cat hardllink.txt	//this link as well pointing to the content of abc.txt
+			//if you change value of any of these file,it will effect on both
+		//softlinks if you remove main file then link file will be there it will not have any content
+	
+
+>who	//who displays the user logged in to system
+	
+>su	//when you want to login to different account
+	>su - root //it will ask for password
+		//here u can execute commands, but can't create file, or we can say we have lilited access
+	>logout 
+>sudo	//super user do
+	//with sudo will get all permissions 
+	//you can add user/remove user
+	>sudo - root
+	
+>passwd	//this is all password realted of the users
+	>sude passwd maria_dev //when maria_dev user login next time, it will ask him to change his password
+	
+>chown 	//change owner
+	>chown maria_dev music/	//change owner music directory ti maria_dev
+>groups 
+
+File type
+	- regular file
+	d directory
+	c character special file
+	| symbolic link
+		
+	owner-group-world
+	rw- rw- r--  
+
+
+>cal	//this will give calender of current month
+
+>chmod 	//change permissions
+	- remove permission of user
+	+ add permission to a user
+	= set a permission and removes others
+
+	u - user
+	g - group
+	o - other
+	a - all of the above
+
+	>chmod g+w abc.txt //here will have permissions to group to write
+	>chmod a+r filename //to add read permission to all
+	>chmod a+rw filename //everyone have read write access
+	>chmod o-rwx filename //remove all permission of other user
+
+>chmod octals :
+
+	octal	binary	file_mode
+	0	000	---
+	1	001	--x
+	2	010	-w-
+	3	011	-wx
+	4	100	r--
+	5	101	r-x
+	6	110	rw-
+	7	111	rwx
+
+	>chmod 755 filename
+	
+	>chmod a=r filename //all will have only read permissions
+	>chmod a=rwx filename //all will have all permissions
+	
+
